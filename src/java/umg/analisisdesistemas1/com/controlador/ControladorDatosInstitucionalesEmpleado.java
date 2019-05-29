@@ -24,7 +24,7 @@ import umg.analisisdesistemas1.com.objeto.DatosEmpleado;
  */
 public class ControladorDatosInstitucionalesEmpleado extends HttpServlet {
     private ModeloDatosEmpleado modeloDatosEmpleado = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     

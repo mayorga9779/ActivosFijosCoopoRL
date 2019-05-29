@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.AF_ROL;
 
 /**
@@ -21,19 +22,22 @@ public class ModeloAf_Rol {
 
     private DataSource ds;
     private String mensaje = "";
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
 
     public ModeloAf_Rol(DataSource ds) {
         this.ds = ds;
     }
 
     public String ingresarRol(String nombre) throws Exception {
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
 
         try {
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_ingresar_rol(?,?)}";
             cs = conexion.prepareCall(sql);

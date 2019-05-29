@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.Menu;
 import umg.analisisdesistemas1.com.objeto.SubMenu;
 
@@ -25,6 +26,8 @@ public class ModeloMenu {
     private SubMenu subMenu;
     private ArrayList<Menu> listaMenu;
     private ArrayList<SubMenu> listaSubMenu;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloMenu(DataSource ds) {
         this.ds = ds;
@@ -32,7 +35,7 @@ public class ModeloMenu {
     
     public ArrayList<Menu> obtenerListaMenu(String usuario) throws Exception{
         listaMenu = new ArrayList<Menu>();
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -40,7 +43,8 @@ public class ModeloMenu {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtener_menu_usuario(?)}";
             cs = conexion.prepareCall(sql);
@@ -69,7 +73,7 @@ public class ModeloMenu {
     
     public ArrayList<SubMenu> obtenerListaSubMenu(String usuario, int codigo_menu) throws Exception{
         listaSubMenu = new ArrayList<SubMenu>();
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -77,7 +81,8 @@ public class ModeloMenu {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtener_submenu_usuario(?, ?)}";
             cs = conexion.prepareCall(sql);

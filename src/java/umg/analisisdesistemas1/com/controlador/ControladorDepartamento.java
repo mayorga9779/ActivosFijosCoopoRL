@@ -23,7 +23,7 @@ import umg.analisisdesistemas1.com.objeto.Departamento;
  */
 public class ControladorDepartamento extends HttpServlet {
     private ModeloDepartamento modeloDepartamento = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     

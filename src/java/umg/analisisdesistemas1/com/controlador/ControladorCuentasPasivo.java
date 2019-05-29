@@ -24,7 +24,7 @@ import umg.analisisdesistemas1.com.objeto.CuentaContable;
  */
 public class ControladorCuentasPasivo extends HttpServlet {
     private ModeloCuentaContable modeloCuentaContable = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     

@@ -12,6 +12,7 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.DatosEmpleado;
 
 /**
@@ -23,13 +24,15 @@ public class ModeloDatosEmpleado {
     private DatosEmpleado datosEmpleado = null;
     private ArrayList<DatosEmpleado> listaDatosEmpleado = null;
     private String mensaje_error = "";
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloDatosEmpleado(DataSource ds) {
         this.ds = ds;
     }
     
     public ArrayList<DatosEmpleado> obtenerDatosResponsableActivo(int codigo_empleado){
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -37,7 +40,8 @@ public class ModeloDatosEmpleado {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtener_datos_empleado_responsable(?, ?, ?, ?, ?, ?)}";
             cs = conexion.prepareCall(sql);

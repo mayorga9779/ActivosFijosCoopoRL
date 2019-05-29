@@ -11,27 +11,30 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.sql.DataSource;
 import java.sql.Types;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 
 /**
  *
  * @author Neon
  */
 public class ModeloNuevoUsuario {
-
     private DataSource ds;
     private String mensaje = "";
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
 
     public ModeloNuevoUsuario(DataSource ds) {
         this.ds = ds;
     }
 
     public String ingresarUsuario(String usu_user, String usu_password, int emp_codigo, int rol_codigo) {
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         try {
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             String sql = "{call sp_ingresar_nuevo_usuario(?, ?, ?, ?, ?)}";
             cs = conexion.prepareCall(sql);
             cs.setString(1, usu_user);

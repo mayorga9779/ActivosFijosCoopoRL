@@ -24,7 +24,7 @@ import umg.analisisdesistemas1.com.objeto.CalculoDepreciacion;
  */
 public class ControladorCalculosContables extends HttpServlet {
     private ModeloCalculoContable modeloCalculoContable = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     

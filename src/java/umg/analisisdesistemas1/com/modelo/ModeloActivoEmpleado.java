@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.ActivoEmpleado;
 
 /**
@@ -22,20 +23,24 @@ public class ModeloActivoEmpleado {
     private DataSource ds;
     private ActivoEmpleado activoEmpleado;
     private ArrayList<ActivoEmpleado> listaActivo = null;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
 
     public ModeloActivoEmpleado(DataSource ds) {
         this.ds = ds;
     }
 
     public ArrayList<ActivoEmpleado> obtenerInfo(int cod) throws Exception {
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         listaActivo = new ArrayList<ActivoEmpleado>();
+        
         try {
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtener_activo_empleado(?)}";
             cs = conexion.prepareCall(sql);

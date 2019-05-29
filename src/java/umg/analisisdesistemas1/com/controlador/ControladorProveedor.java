@@ -24,7 +24,7 @@ import umg.analisisdesistemas1.com.objeto.Proveedor;
  */
 public class ControladorProveedor extends HttpServlet {
     private ModeloProveedor modeloProveedor = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     

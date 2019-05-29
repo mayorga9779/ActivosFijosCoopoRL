@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.CuentaContable;
 
 /**
@@ -20,20 +21,23 @@ import umg.analisisdesistemas1.com.objeto.CuentaContable;
 public class ModeloCodigoActivo {
     private DataSource ds;
     private String codigo_activo = "";
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloCodigoActivo(DataSource ds) {
         this.ds = ds;
     }
     
     public String obtenerCodigoActivo(String codigo_referencia){
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{? = call fn_genera_codigo_activo(?)}";
             cs = conexion.prepareCall(sql);

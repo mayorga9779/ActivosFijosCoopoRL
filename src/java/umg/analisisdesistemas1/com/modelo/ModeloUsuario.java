@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 
 /**
  *
@@ -18,13 +19,15 @@ import javax.sql.DataSource;
  */
 public class ModeloUsuario {
     private DataSource ds;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloUsuario(DataSource ds) {
         this.ds = ds;
     }
     
     public String mensajeLogueo(String usuario, String password) throws Exception {
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -32,7 +35,8 @@ public class ModeloUsuario {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_logueo_usuario(?, ?, ?)}";
             cs = conexion.prepareCall(sql);

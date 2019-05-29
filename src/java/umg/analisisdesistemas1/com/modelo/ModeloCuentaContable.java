@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.CuentaContable;
 
 /**
@@ -21,13 +22,15 @@ public class ModeloCuentaContable {
     private DataSource ds;
     private CuentaContable cuentaContable;
     private ArrayList<CuentaContable> listaCuentaContable = null;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloCuentaContable(DataSource ds) {
         this.ds = ds;
     }
     //opcion 1: activos
     public ArrayList<CuentaContable> obtenerListaCuentaContable(int opcion) throws Exception{
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -35,7 +38,8 @@ public class ModeloCuentaContable {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtener_cuentas_contables(?)}";
             cs = conexion.prepareCall(sql);

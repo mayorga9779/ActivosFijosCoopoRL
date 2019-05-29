@@ -22,7 +22,7 @@ import umg.analisisdesistemas1.com.modelo.ModeloActivo;
 public class ControladorBajaActivo extends HttpServlet {
 
     private ModeloActivo modeloActivo = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     

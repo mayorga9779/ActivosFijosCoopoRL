@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 
 /**
  *
@@ -17,19 +18,22 @@ import javax.sql.DataSource;
  */
 public class ModeloReporte {
     private DataSource ds;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloReporte(DataSource ds) {
         this.ds = ds;
     }
     
     public Connection obtenerConexion(){
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         
         try{
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
         } catch(Exception e){
             
         }

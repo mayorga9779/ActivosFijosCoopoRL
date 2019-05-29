@@ -22,7 +22,7 @@ import umg.analisisdesistemas1.com.modelo.ModeloCodigoActivo;
  */
 public class ControladorCodigoActivo extends HttpServlet {
     private ModeloCodigoActivo modeloCodigoActivo = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String otro = "";
     

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.Types;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 
 /**
  *
@@ -19,6 +20,8 @@ import javax.sql.DataSource;
 public class ModeloIngresoActivo {
     private DataSource ds;
     private String mensaje = "";
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloIngresoActivo(DataSource ds) {
         this.ds = ds;
@@ -29,14 +32,15 @@ public class ModeloIngresoActivo {
             String fec_adquisicion, float valor_adquisicion, String fec_inicio_depre, float porc_depre,
             float valor_inicial_libros, float depre_mensual, float depre_anual, String factura, float monto_factura,
             String observaciones, String estado, int cod_departamento, int cod_ubicacion, int cod_proveedor){
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_inserta_datos_activo(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
             cs = conexion.prepareCall(sql);

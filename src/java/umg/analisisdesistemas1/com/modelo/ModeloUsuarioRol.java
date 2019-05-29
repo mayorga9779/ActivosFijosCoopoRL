@@ -15,29 +15,32 @@ import java.util.ArrayList;
 //import java.util.Date;
 import javax.sql.DataSource;
 import java.sql.Date;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 
 /**
  *
  * @author Neon
  */
 public class ModeloUsuarioRol {
-
     private DataSource ds;
     private Usuario usuario;
     private ArrayList<Usuario> ListaUserRol = null;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
 
     public ModeloUsuarioRol(DataSource ds) {
         this.ds = ds;
     }
 
     public ArrayList<Usuario> ObtenerUsuario(int cod) throws Exception {
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         ListaUserRol = new ArrayList<Usuario>();
         try {
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             String sql = "{call sp_obtener_usuario (?)}";
 
             cs = conexion.prepareCall(sql);

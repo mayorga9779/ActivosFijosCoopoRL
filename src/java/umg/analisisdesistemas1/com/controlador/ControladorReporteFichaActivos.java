@@ -37,7 +37,7 @@ import umg.analisisdesistemas1.com.modelo.ModeloReporte;
  */
 public class ControladorReporteFichaActivos extends HttpServlet {
     private ModeloReporte modeloReporte = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String otro = "";
     

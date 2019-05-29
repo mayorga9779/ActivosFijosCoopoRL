@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.Usuario;
 
 /**
@@ -18,10 +19,11 @@ import umg.analisisdesistemas1.com.objeto.Usuario;
  * @author Neon
  */
 public class ModeloUsuarioAct {
-
     private DataSource ds;
     private Usuario usuario;
     private ArrayList<Usuario> ListaAct = null;
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
 
     public ModeloUsuarioAct(DataSource ds) {
         this.ds = ds;
@@ -35,7 +37,8 @@ public class ModeloUsuarioAct {
         ListaAct = new ArrayList<Usuario>();
 
         try {
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             String sql = "{call sp_actualizar_usuario (?)}";
 
         } catch (Exception ex) {

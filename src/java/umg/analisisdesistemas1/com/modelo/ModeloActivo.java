@@ -12,26 +12,28 @@ import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import javax.sql.DataSource;
+import umg.analisisdesistemas1.com.conexion.Conexion;
 import umg.analisisdesistemas1.com.objeto.Activo;
 
 /**
  *
  * @author Richard
  */
-public class ModeloActivo {
+public class ModeloActivo extends Conexion {
     private DataSource ds;
     private Activo activo;
     private Activo detalle; 
     private ArrayList<Activo> listaActivo = null;
     private ArrayList<Activo> listaActivoAlta = null; 
-    
+    private Conexion conn = new Conexion();
+    private Connection conexion = null;
     
     public ModeloActivo(DataSource ds) {
         this.ds = ds;
     }
     
     public ArrayList<Activo> obtenerListaActivoAlta(int opcion) throws Exception{
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -39,7 +41,8 @@ public class ModeloActivo {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtiene_activos_alta(?)}";
             cs = conexion.prepareCall(sql);
@@ -63,7 +66,7 @@ public class ModeloActivo {
     }
     
     public ArrayList<Activo> obtenerListaActivo(int opcion) throws Exception{
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
@@ -71,7 +74,8 @@ public class ModeloActivo {
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_obtiene_todos_activos(?)}";
             cs = conexion.prepareCall(sql);
@@ -96,14 +100,15 @@ public class ModeloActivo {
     
     public String mensajeBajaActivo(int opcion, int codigo_activo, int motivo_baja, String descripcion_baja){
         String mensaje = "";
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_baja_activos(?,?,?,?,?)}";
             cs = conexion.prepareCall(sql);
@@ -126,14 +131,15 @@ public class ModeloActivo {
     
     public String mensajeModificacionActivo(int opcion, int codigo_activo, String descripcion, int codigo_empleado, float valor_adquisicion, String observaciones, int codigo_departamento, int ubicacion){
         String mensaje = "";
-        Connection conexion = null;
+        //Connection conexion = null;
         Statement st = null;
         CallableStatement cs = null;
         ResultSet rs = null;
         
         try{
             //1 Primero, establezco la conexion
-            conexion = ds.getConnection();
+            //conexion = ds.getConnection();
+            conexion = conn.cadena_conexion();
             //2 Crear la consulta o la sentencia SQL o el procedimiento almacenado
             String sql = "{call sp_modificar_activo(?,?,?,?,?,?,?,?,?)}";
             cs = conexion.prepareCall(sql);

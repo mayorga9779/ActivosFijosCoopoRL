@@ -30,7 +30,7 @@ public class ControladorUsuario extends HttpServlet {
     private ModeloUsuario modeloUsuario = null;
     private ModeloMenu modeloMenu = null;
     private ModeloCuentaContable modeloCuentaContable = null;
-    @javax.annotation.Resource(name = "pool_conexiones")
+    //@javax.annotation.Resource(name = "pool_conexiones")
     private DataSource ds;
     private String mensaje = "";
     
